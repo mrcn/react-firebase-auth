@@ -1,5 +1,10 @@
-import app from '../..firebase/app';
-import '../../firebase/auth';
+import app from 'firebase/app';
+import 'firebase/auth';
+
+// // Backup
+// import app from '../..firebase/app';
+// import '../../firebase/auth';
+// // Backup
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -25,10 +30,11 @@ class Firebase {
 
     doSignOut = () => this.auth.signOut();
 
-    doPasswordReset = () => this.auth.sendPasswordResetEmail(email);
+    //what is going on with this code
+    doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
 
     doPasswordUpdate = password => 
-        this.auth.currentUser.updatePassword(passowrd);
+        this.auth.currentUser.updatePassword(password);
 }
 
 

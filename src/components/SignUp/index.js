@@ -36,7 +36,7 @@ class SignUpForm extends Component {
         const { username, email, passwordOne } = this.state;
 
         this.props.firebase
-        .doCreateUserWithEmailAndPassword(email, password)
+        .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
             this.setState({ ...INITIAL_STATE });
         });
@@ -60,7 +60,7 @@ class SignUpForm extends Component {
 
         // simple form acceptance criteria
         const isInvalid = 
-        passwordOne !=== passwordTwo ||
+        passwordOne !== passwordTwo ||
         passwordOne === '' ||
         email === '' ||
         username === '';
@@ -96,7 +96,7 @@ class SignUpForm extends Component {
                     placeholder="Confirm Password"
                 />
 
-                <button disabled={isValid} type="submit">
+                <button disabled={isInvalid} type="submit">
                     Sign Up
                 </button>
 

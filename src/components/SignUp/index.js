@@ -5,6 +5,20 @@ import * as ROUTES from '../../constants/routes';
 import '../../semantic-ui-css-master/semantic.min.css';
 import Firebase from '../Firebase';
 
+
+// class SignUpPage extends React {
+//     render () {
+//         return (
+//             <div>
+//                 <h1>SignUp</h1>
+//                 <Firebase.Consumer>
+//                     {firebase => <SignUpForm firebase={firebase} />}
+//                 </Firebase.Consumer>
+//             </div>        
+//         )
+//     }
+// }
+
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
@@ -29,11 +43,12 @@ class SignUpForm extends Component {
         super(props);
         // set form initial state. spread operator either goes all the way up prop structure, or pulls everything from the object. 
         this.state = { ...INITIAL_STATE };
-    }
+    };
 
     //to do 
     onSubmit = event => {
-        const { username, email, passwordOne } = this.state;
+        // const { username, email, passwordOne } = this.state;
+        const { email, passwordOne } = this.state;
 
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -42,7 +57,7 @@ class SignUpForm extends Component {
         });
         
         event.preventDefault();
-    }
+    };
     
     onChange = event => {
         this.setState({ [ event.target.name]: event.target.value });
@@ -106,11 +121,20 @@ class SignUpForm extends Component {
     }
 }
 
-const SignUpLink = () => (
-    <p>
-        Don't have an account? <Link to={ROUTES.SIGN_UP}> Sign up </Link>
-    </p>
-);
+class SignUpLink extends Component {
+    redner(){
+        return (
+            <p>
+                Dont have an account?
+            </p>
+        )
+    }
+}
+// const SignUpLink = () => (
+//     <p>
+//         Don't have an account? <Link to={ROUTES.SIGN_UP}> Sign up </Link>
+//     </p>
+// );
 
 export default SignUpPage
 

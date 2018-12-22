@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 import '../../semantic-ui-css-master/semantic.min.css';
+import Firebase from '../Firebase';
 
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
-        <SignUpForm />
+        <Firebase.Consumer>
+            {firebase => <SignUpForm firebase={firebase}/>}
+        </Firebase.Consumer>
     </div>
 );
 
@@ -23,12 +26,22 @@ const INITIAL_STATE = {
 class SignUpForm extends Component {
     // state pattern
     constructor(props) {
-        super(propts);
+        super(props);
         // set form initial state. spread operator either goes all the way up prop structure, or pulls everything from the object. 
         this.state = { ...INITIAL_STATE };
     }
 
+    //to do 
     onSubmit = event => {
+        const { username, email, passwordOne } = this.state;
+
+        this.props.firebase
+        .doCreateUserWithEmailAndPassword(email, password)
+        .then(authUser => {
+            this.setState({ ...INITIAL_STATE });
+        });
+        
+        event.preventDefault();
     }
     
     onChange = event => {
@@ -36,6 +49,7 @@ class SignUpForm extends Component {
     };
 
     render(){
+        // this.state is loaded with an object.
         const {
             username,
             email,
@@ -43,6 +57,13 @@ class SignUpForm extends Component {
             passwordTwo,
             error,
         } = this.state;
+
+        // simple form acceptance criteria
+        const isInvalid = 
+        passwordOne !=== passwordTwo ||
+        passwordOne === '' ||
+        email === '' ||
+        username === '';
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -75,7 +96,9 @@ class SignUpForm extends Component {
                     placeholder="Confirm Password"
                 />
 
-                <button type="submit"> Sign Up</button>
+                <button disabled={isValid} type="submit">
+                    Sign Up
+                </button>
 
                 {error && <p> {error.message}</p>}
             </form>

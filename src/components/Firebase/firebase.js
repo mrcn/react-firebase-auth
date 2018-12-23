@@ -1,10 +1,6 @@
+import * as firebase from 'firebase';
 import app from 'firebase/app';
 import 'firebase/auth';
-
-// Backup
-// import app from '../..firebase/app';
-// import '../../firebase/auth';
-// Backup
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -23,7 +19,7 @@ class Firebase {
     
     // auth api
     doCreateUserWithEmailAndPassword = (email, password) => 
-        this.auth.CreateUserWithEmailAndPassword(email, password);
+        this.auth.createUserWithEmailAndPassword(email, password);
 
     doSignInWithEmailAndPassword = (email, password) =>
         this.auth.doSignInWithEmailAndPassword(email, password);

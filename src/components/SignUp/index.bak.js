@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
-import { Link, withRouter} from 'react-router-dom';
-
-import { withFirebase } from '../Firebase';
+import { Link } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 
 import * as ROUTES from '../../constants/routes';
 import '../../semantic-ui-css-master/semantic.min.css';
 import Firebase from '../Firebase';
 
-
 const SignUpPage = () => (
     <div>
         <h1>SignUp</h1>
         <FirebaseContext.Consumer>
             {firebase => <SignUpForm firebase={firebase} />}
-            
         </FirebaseContext.Consumer>
 
     </div>
@@ -36,19 +32,19 @@ class SignUpForm extends Component {
     };
 
     onSubmit = event => {
-        const { email, passwordOne } = this.state;
-        
+        const { username, email, passwordOne } = this.state;
+
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
-                console.log(ROUTES.HOME);
-                this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
                 this.setState({ error });
             });
+
         event.preventDefault();
+
     }
 
     onChange = event => {
@@ -66,10 +62,10 @@ class SignUpForm extends Component {
         } = this.state
         
         const isInvalid =
-            username === '' ||
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
-            email === '';
+            email === '' ||
+            username === '';
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -78,7 +74,7 @@ class SignUpForm extends Component {
                     value={username}
                     onChange={this.onChange}
                     type="text"
-                    placeholder="username"
+                    placeholder="Full name"
                 />
                 <input
                     name="email"
@@ -117,7 +113,6 @@ const SignUpLink = () => (
         Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
     </p>
 );
-
 
 export default SignUpPage;
 

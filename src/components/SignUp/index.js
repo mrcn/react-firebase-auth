@@ -28,7 +28,7 @@ const INITIAL_STATE = {
     error: null,
 };
 
-class SignUpFormBase extends Component {
+class SignUpFormPrime extends Component {
     constructor(props) {
         super(props);
 
@@ -117,7 +117,7 @@ const SignUpLink = () => (
     </p>
 );
 
-const SignUpForm = withRouter(withFirebase(SignUpFormBase));
+const SignUpForm = withRouter(withFirebase(SignUpFormPrime));
 export default SignUpPage;
 
 export { SignUpForm, SignUpLink };

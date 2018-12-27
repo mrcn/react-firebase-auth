@@ -1,8 +1,7 @@
 import React from 'react';
-// import { Navbar } from "react-bulma-components/full";
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-
+import SignOutButton from '../SignOut';
 
 const Navigation = () => (
     <div>
@@ -24,6 +23,9 @@ const Navigation = () => (
             </li>
             <li>
                 <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+            </li>
+            <li>
+                <SignOutButton />
             </li>
         </ul>
     </div>

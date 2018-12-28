@@ -1,33 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import SignOutButton from '../SignOut';
+// import SignOutButton from '../SignOut';
 
 const Navigation = () => (
-    <div>
-        <ul>
-            <li>
-                <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.LANDING}>Landing</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.HOME}>Home</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.ACCOUNT}>Account</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.ADMIN}>Admin</Link>
-            </li>
-            <li>
-                <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-            </li>
-            <li>
-                <SignOutButton />
-            </li>
-        </ul>
+    <div className="ui menu">
+        <div className="header item">
+            <Link to={ROUTES.LANDING}>Landing</Link>
+        </div>
+        <div className="header item">
+            <Link to={ROUTES.HOME}>Home</Link>
+        </div>
+        <div className="header item">
+            <Link to={ROUTES.ACCOUNT}>Account</Link>
+        </div>
+        <div className="header item">
+            <Link to={ROUTES.ADMIN}>Admin</Link>
+        </div>
+        <div className="header item">
+            <Link to={ROUTES.SIGN_IN}>Sign In</Link> / <Link to={ROUTES.SIGN_UP}>Register</Link>
+        </div>
+        {/* <div className="header item">
+            <SignOutButton />
+        </div> */}
     </div>
 );
 

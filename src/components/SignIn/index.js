@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { SignUpLink } from '../SignUp';
+
 import { compose } from 'recompose';
-import { SignUpForm, SignUpLink } from '../SignUp';
 
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
@@ -10,7 +11,7 @@ import { withFirebase } from '../Firebase';
 const SignInPage = () => (
     <div>
         <h1>SignIn</h1>
-        <SignUpForm />
+        <SignInForm />
         <SignUpLink />
     </div>
 );
@@ -29,7 +30,7 @@ class SignInFormPrime extends Component {
     }
 
     onSubmit = event => {
-        const { username, email, passwordOne } = this.state;
+        const { email, passwordOne } = this.state;
 
         this.props.firebase
             .doSignInWithEmailAndPassowrd(email, passwordOne)

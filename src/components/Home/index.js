@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 
-const Home = () => (
+const HomePage = () => (
     <div>
         <h1>Home</h1>
         <div className="ui three stackable doubling cards">
@@ -14,4 +14,4 @@ const Home = () => (
     </div>
 );
 
-export default Home;
+export default HomePage;

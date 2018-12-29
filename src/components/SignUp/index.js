@@ -71,37 +71,49 @@ class SignUpFormPrime extends Component {
             email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    name="username"
-                    value={username}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="username"
-                />
-                <input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    name="passwordOne"
-                    value={passwordOne}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
-                />
-                <input
-                    name="passwordTwo"
-                    value={passwordTwo}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Confirm Password"
-                />
-
-                <button disabled={isInvalid} type="submit">
+            <form onSubmit={this.onSubmit} className="ui form">
+                    <div className="field six wide">
+                        <label> Username </label>
+                        <input
+                            name="username"
+                            value={username}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="username"
+                            className="field"
+                        />
+                    </div> 
+                    <div className="field six wide">
+                        <label> Email </label>
+                        <input
+                            name="email"
+                            value={email}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="Email Address"
+                        />
+                    </div> 
+                    <div className="field six wide">
+                        <label> Password </label>
+                        <input
+                            name="passwordOne"
+                            value={passwordOne}
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder="Password"
+                        />
+                    </div> 
+                    <div className="field six wide">
+                        <label> Confirm Password </label>
+                        <input
+                            name="passwordTwo"
+                            value={passwordTwo}
+                            onChange={this.onChange}
+                            type="password"
+                            placeholder="Confirm Password"
+                        /> 
+                    </div> 
+                <button disabled={isInvalid} type="submit" className="ui button">
                     Sign Up
                 </button>
                 

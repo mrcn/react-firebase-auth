@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Card = () => (
-    <div className="ui card">
+    <div className="card">
         <div className="image">
             <img src="https://semantic-ui.com/images/avatar2/large/kristy.png" />
         </div>

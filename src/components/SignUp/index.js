@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { withFirebase } from '../Firebase';
 // import { FirebaseContext } from '../Firebase';
@@ -37,11 +37,11 @@ class SignUpFormPrime extends Component {
 
     onSubmit = event => {
         const { username, email, passwordOne } = this.state;
-        
+
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
-                this.setState({ ...INITIAL_STATE });                
+                this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.HOME);
             })
             .catch(error => {
@@ -54,7 +54,7 @@ class SignUpFormPrime extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    
+
     render() {
         const {
             username,
@@ -63,7 +63,7 @@ class SignUpFormPrime extends Component {
             passwordTwo,
             error,
         } = this.state
-        
+
         const isInvalid =
             username === '' ||
             passwordOne !== passwordTwo ||
@@ -72,51 +72,51 @@ class SignUpFormPrime extends Component {
 
         return (
             <form onSubmit={this.onSubmit} className="ui form">
-                    <div className="field six wide">
-                        <label> Username </label>
-                        <input
-                            name="username"
-                            value={username}
-                            onChange={this.onChange}
-                            type="text"
-                            placeholder="username"
-                            className="field"
-                        />
-                    </div> 
-                    <div className="field six wide">
-                        <label> Email </label>
-                        <input
-                            name="email"
-                            value={email}
-                            onChange={this.onChange}
-                            type="text"
-                            placeholder="Email Address"
-                        />
-                    </div> 
-                    <div className="field six wide">
-                        <label> Password </label>
-                        <input
-                            name="passwordOne"
-                            value={passwordOne}
-                            onChange={this.onChange}
-                            type="password"
-                            placeholder="Password"
-                        />
-                    </div> 
-                    <div className="field six wide">
-                        <label> Confirm Password </label>
-                        <input
-                            name="passwordTwo"
-                            value={passwordTwo}
-                            onChange={this.onChange}
-                            type="password"
-                            placeholder="Confirm Password"
-                        /> 
-                    </div> 
+                <div className="field six wide">
+                    <label> Username </label>
+                    <input
+                        name="username"
+                        value={username}
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="username"
+                        className="field"
+                    />
+                </div>
+                <div className="field six wide">
+                    <label> Email </label>
+                    <input
+                        name="email"
+                        value={email}
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="Email Address"
+                    />
+                </div>
+                <div className="field six wide">
+                    <label> Password </label>
+                    <input
+                        name="passwordOne"
+                        value={passwordOne}
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </div>
+                <div className="field six wide">
+                    <label> Confirm Password </label>
+                    <input
+                        name="passwordTwo"
+                        value={passwordTwo}
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="Confirm Password"
+                    />
+                </div>
                 <button disabled={isInvalid} type="submit" className="ui button">
                     Sign Up
                 </button>
-                
+
                 {error && <p>{error.message}</p>}
             </form>
         );

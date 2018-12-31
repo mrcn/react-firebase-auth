@@ -2,23 +2,10 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { Menu } from 'semantic-ui-react';
-
-
-// import React, { Component } from 'react'
-// import { Link } from 'react-router-dom';
-// import * as ROUTES from '../../constants/routes';
-// import SignOutButton from '../SignOut';
-// import { withFirebase } from '../Firebase';
-// import { FirebaseContext } from '../Firebase';
-// import { Menu } from 'semantic-ui-react';
-// import AuthUserContext from './context';
-// import React from 'react';
-
-
+import { AuthUserContext } from '../Session';
 
 
 
@@ -29,8 +16,12 @@ const Navigation = (authUser) => {
 
     return (
         <div>
-            {authUser ? <NavigationAuth /> : <NavigationNonAuth />} 
-        </div> 
+            <AuthUserContext.Consumer>
+                {authUser =>
+                    authUser ? <NavigationAuth /> : <NavigationNonAuth />
+                }
+            </AuthUserContext.Consumer>
+        </div>
     );
 };
 
@@ -39,7 +30,6 @@ export class NavigationAuth extends Component {
 
     render() {
         return (
-
             <div className="ui menu">
                 <div className="header item">
                     RANDOM HOUSE APP
@@ -66,7 +56,7 @@ export class NavigationAuth extends Component {
 export class NavigationNonAuth extends Component {
 
     render() {
-        const { activeItem } = this.state
+        // const { activeItem } = this.state
 
         return (
 

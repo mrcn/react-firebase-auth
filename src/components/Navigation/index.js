@@ -1,41 +1,43 @@
 /*global firebase*/
 
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
+
 import SignOutButton from '../SignOut';
-import { withFirebase } from '../Firebase';
-import { FirebaseContext } from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 import { Menu } from 'semantic-ui-react';
 
 
-
-
-const MenuSwitcher = () => (
-
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in
-            console.log("if: " + user)
-        } else {
-            console.log("else: " + user)
-            // No user is signed in.
-        }
-    })
-);
+// import React, { Component } from 'react'
+// import { Link } from 'react-router-dom';
+// import * as ROUTES from '../../constants/routes';
+// import SignOutButton from '../SignOut';
+// import { withFirebase } from '../Firebase';
+// import { FirebaseContext } from '../Firebase';
+// import { Menu } from 'semantic-ui-react';
+// import AuthUserContext from './context';
+// import React from 'react';
 
 
 
-export default class Navigation extends Component {
-    state = {}
 
-    handleItemClick = (e, { name }) => this.setstate({ activeItem: name })
-    
-    
+
+const Navigation = (authUser) => {
+    // state = {}
+    // handleItemClick = (e, { name }) => this.setstate({ activeItem: name })
+    // const { activeItem } = this.state
+
+    return (
+        <div>
+            {authUser ? <NavigationAuth /> : <NavigationNonAuth />} 
+        </div> 
+    );
+};
+
+
+export class NavigationAuth extends Component {
+
     render() {
-        const { activeItem } = this.state
-
         return (
 
             <div className="ui menu">
@@ -51,15 +53,33 @@ export default class Navigation extends Component {
                 <a className="item">
                     <Link to={ROUTES.ACCOUNT}>Account</Link>
                 </a>
+                <div className="right menu">
+                    <a className="item">
+                        <SignOutButton />
+                    </a>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class NavigationNonAuth extends Component {
+
+    render() {
+        const { activeItem } = this.state
+
+        return (
+
+            <div className="ui menu">
+                <div className="header item">
+                    RANDOM HOUSE APP
+            </div>
                 <a className="item">
-                    <Link to={ROUTES.ADMIN}>Admin</Link>
+                    <Link to={ROUTES.LANDING}>Landing</Link>
                 </a>
                 <div className="right menu">
                     <a className="item">
                         <Link to={ROUTES.SIGN_IN}>Sign In</Link> / <Link to={ROUTES.SIGN_UP}>Register</Link>
-                    </a>
-                    <a className="item">
-                        <SignOutButton />
                     </a>
                 </div>
             </div>

@@ -13,3 +13,7 @@ to-do
 to run
 1. cd to src
 2. npm start
+
+
+helpful notes
+1. https://github.com/the-road-to-react-with-firebase/react-firebase-authentication/commit/6cbccce21952e10472504fc6ef3d37af2c998bb6

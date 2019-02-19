@@ -8,3 +8,8 @@ following along with:
 to-do
 1. replace css ui implementation with react components
 2. fix sessions (secure pages, add 'forgot password," account admin controls like change password)
+
+
+to run
+1. cd to src
+2. npm start

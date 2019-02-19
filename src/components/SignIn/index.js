@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { SignUpLink } from '../SignUp';
-
 import { compose } from 'recompose';
 
-import * as ROUTES from '../../constants/routes';
+import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
-
+import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
     <div>
@@ -22,7 +20,7 @@ const INITIAL_STATE = {
     error: null,
 };
 
-class SignInFormPrime extends Component {
+class SignInFormBase extends Component {
     constructor(props) {
         super(props);
 
@@ -30,29 +28,30 @@ class SignInFormPrime extends Component {
     }
 
     onSubmit = event => {
-        const { email, passwordOne } = this.state;
+        const { email, password } = this.state;
 
         this.props.firebase
-            .doSignInWithEmailAndPassowrd(email, passwordOne)
+            .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
                 this.props.history.push(ROUTES.HOME);
             })
-            .catch(error => { 
+            .catch(error => {
                 this.setState({ error });
             });
 
-            event.preventDefault();
-};
+        event.preventDefault();
+    };
 
-onChange = event => {
-    this.setState({ [event.target.name ]: event.target.value });  
-};
+    onChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
 
-render () { 
-    const { email, password, error } = this.state;
+    render() {
+        const { email, password, error } = this.state;
 
-    const isInvalid = password === '' || email ==='';
+        const isInvalid = password === '' || email === '';
+
         return (
             <form onSubmit={this.onSubmit}>
                 <input
@@ -71,7 +70,7 @@ render () {
                 />
                 <button disabled={isInvalid} type="submit">
                     Sign In
-            </button>
+        </button>
 
                 {error && <p>{error.message}</p>}
             </form>
@@ -79,10 +78,11 @@ render () {
     }
 }
 
-const SignInForm = compose (
+const SignInForm = compose(
     withRouter,
     withFirebase,
-)(SignInFormPrime);
+)(SignInFormBase);
 
 export default SignInPage;
+
 export { SignInForm };

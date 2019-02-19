@@ -1,4 +1,3 @@
-// import * as firebase from 'firebase';
 import app from 'firebase/app';
 import 'firebase/auth';
 
@@ -15,22 +14,22 @@ class Firebase {
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
-    };
-    
-    // auth api
-    doCreateUserWithEmailAndPassword = (email, password) => 
+    }
+
+    // *** Auth API ***
+
+    doCreateUserWithEmailAndPassword = (email, password) =>
         this.auth.createUserWithEmailAndPassword(email, password);
 
     doSignInWithEmailAndPassword = (email, password) =>
-        this.auth.doSignInWithEmailAndPassword(email, password);
+        this.auth.signInWithEmailAndPassword(email, password);
 
     doSignOut = () => this.auth.signOut();
 
-    //what is going on with this code
-    doPasswordReset = (email) => this.auth.sendPasswordResetEmail(email);
+    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
-    doPasswordUpdate = password => 
+    doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
-};
+}
 
 export default Firebase;

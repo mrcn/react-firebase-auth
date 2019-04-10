@@ -13,8 +13,9 @@ to-do
 to run
 1. cd to root
 2. > npm install
-3. create .env file containing with firebase credentials
-2. cd to src > npm start
+3. in root, create .env file containing firebase credentials
+4. cd to src 
+5. > npm start
 
 
 helpful notes

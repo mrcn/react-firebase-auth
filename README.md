@@ -11,8 +11,10 @@ to-do
 
 
 to run
-1. cd to src
-2. npm start
+1. cd to root
+2. > npm install
+3. create .env file containing with firebase credentials
+2. cd to src > npm start
 
 
 helpful notes
